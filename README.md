@@ -1,3 +1,10 @@
+
+ ## 🧑‍💻 Emojizador
+ <img src="https://github.com/rodrigodevts/repositorio-de-Imagens/blob/main/Capa.png?raw=true" alt="Figma"/>
+
+## ✨ Layout Figma
+ <a href="https://www.figma.com/file/nY1n22HVaFy6X5BtogL79Z/Movies-Emojis?node-id=21%3A26&t=cXyLetY6WCf6heJN-1">Link do layout </br></a>
+
 ## Getting Started
 
 First, run the development server:
@@ -15,10 +22,6 @@ pnpm dev
 	<li>Add database integration to save emoji movies.</li>
 	<li>Limit the total movies each user can generate, due to openAI spending.</li>
  </ul>
-
- ## ✨ Figma Layout
- <a href="https://www.figma.com/file/nY1n22HVaFy6X5BtogL79Z/Movies-Emojis?node-id=21%3A26&t=cXyLetY6WCf6heJN-1">Link do layout </br></a>
- <img src="https://github.com/rodrigodevts/repositorio-de-Imagens/blob/main/Capa.png?raw=true" alt="Figma"/>
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
