@@ -1,0 +1,61 @@
+.card {
+	position: relative;
+
+	width: 100%;
+	padding: 49px 160px 49px 43px;
+	max-height: 132px;
+
+	background: var(--card-gradient);
+	border: 1px solid var(--gray-400);
+	border-radius: 5px;
+
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+
+	box-shadow: 0px 4px 26px rgba(65, 47, 184, 0.65);
+	border: 3px solid var(--violet-700);
+
+	& + & {
+		box-shadow: none;
+		border: 0;
+	}
+}
+
+.movieName {
+	font-weight: 700;
+	font-size: 28px;
+	line-height: 33px;
+	color: var(--white);
+}
+
+.movieEmoji {
+	font-weight: 700;
+	font-size: 48px;
+	line-height: 33px;
+}
+
+.copyEmoji {
+	position: absolute;
+	right: 0;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 44px 25px;
+
+	border: 0;
+	border-left: 1px solid var(--gray-400);
+	background: transparent;
+	color: var(--white);
+
+	cursor: pointer;
+
+	&:hover {
+		svg {
+			transition: color 0.2s;
+			color: var(--violet-300);
+		}
+	}
+}
