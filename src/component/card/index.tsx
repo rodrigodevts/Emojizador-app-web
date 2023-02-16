@@ -3,7 +3,7 @@ import styles from '@/styles/Card.module.scss';
 
 interface CardProps {
 	movieName: string;
-	movieEmoji: string;
+	movieEmoji?: string;
 }
 
 const Card = ({ movieName, movieEmoji }: CardProps) => {

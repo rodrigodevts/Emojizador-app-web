@@ -1,8 +1,9 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { GetServerSideProps } from 'next';
 import { getSession, useSession, signOut } from 'next-auth/react';
+import { Session } from 'next-auth';
 
 import Card from '@/component/card';
 import Loading from '@/component/loading';
@@ -12,62 +13,112 @@ import { api } from '@/services/api';
 import { FiLogOut } from 'react-icons/fi';
 import styles from '@/styles/Home.module.scss';
 
-type Data = {
-  text: string;
-  created_at: Date;
+type DataResponseType = {
+  movieGenerated?: {
+    movieEmojizado: string;
+  };
+  countMovies?: number;
+  message: string;
 }
 
-type MoviesEmojizados = {
-  movieName: string;
-  movieEmojizado: string;
-  created_at: Date;
+type MoviesEmojizadosType = {
+  data: {
+    movieName: string;
+    movieEmojizado?: string;
+  }
 };
 
-type User = {
+type UserType = {
   user_name: string;
   user_avatar: string;
+}
+
+type CountMovieGeneratedType = {
+  countMovies: number;
+  maxMovies: number;
+}
+
+interface CustomSessionProps extends Session {
+  userActive: object | null;
 }
 
 export default function Home() {
   const [ loading, setLoading ] = useState(false);
   const [ isError, setIsError ] = useState(false);
+  const [ errorMessage, setErrorMessage ] = useState('');
+  const [countMovieGenerated, setCountMovieGenerated] = useState<CountMovieGeneratedType>({} as CountMovieGeneratedType);
   const [ movieName, setMovieName ] = useState('');
-  const [ moviesEmojizados, setMoviesEmojizados ] = useState<MoviesEmojizados[]>([]);
+  const [moviesEmojizados, setMoviesEmojizados] = useState<MoviesEmojizadosType[]>([]);
   
   const { data: session } = useSession();
 
-  const user: User = {
-    user_name: session?.user?.name?.split(' ')[0]!,
-    user_avatar: session?.user?.image!
+  const customSession = session as CustomSessionProps | null; 
+
+  const user: UserType = {
+    user_name: customSession?.user?.name?.split(' ')[0]!,
+    user_avatar: customSession?.user?.image!
   }
 
-  const handleSendMessageSubmit = async (event: FormEvent): Promise<void> => {
-    event.preventDefault();
-    const message = `Convert movie titles into emoji.\n\n${movieName}:`;
-    setLoading(true);
-    try {
-      const response = await api.post<Data>('/ia-emojizador', {
-        prompt: message
-      });
-
-      if (response.data.text) {
-        setMoviesEmojizados(oldState => [{
-          movieName,
-          movieEmojizado: response.data.text,
-          created_at: response.data.created_at,
-        }, ...oldState]);
-        setLoading(false);
-        return;
-      }
-
-      setIsError(true);
-      setLoading(false);
-    } catch (err) {
-      setIsError(true);
-      setLoading(false);
-      console.log(err);
+  const getErrorMessage = (error: string): string => {
+    switch (error) {
+      case 'insufficient credits':
+        return 'Infelizmente meu orçamento é limitado, você só pode emojizar 3 filmes! 😭😭😭😭';
+      case 'movie name already exists':
+        return 'Você já emojizou esse, que tal tentar outro filme? 😉';
+      default:
+        return "Eita, deu erro! Pode enviar um print no meu instagram? @rodrigo.dev.json"
     }
   }
+  
+  const handleSendMessageSubmit = async (event: FormEvent): Promise<void> => {
+    event.preventDefault();
+
+    if (!session) {
+      return;
+    }
+
+    if (customSession?.userActive) {
+      const message = `Convert movie titles into emoji.\n\n${movieName}:`;
+      setLoading(true);
+      try {
+        const { data } = await api.post<DataResponseType>('/ia-emojizador', {
+          prompt: message,
+          movieName,
+          user: customSession?.userActive
+        });
+
+        if (data.movieGenerated?.movieEmojizado) {
+          listMoviesGenerated();
+          setLoading(false);
+          setIsError(false);
+          setErrorMessage('');
+          return;
+        }
+
+        setIsError(true);
+        setLoading(false);
+      } catch (err: any) {
+        setIsError(true);
+        setLoading(false);
+        setErrorMessage(getErrorMessage(err.response.data.message));
+      }
+    }
+  }
+
+  const listMoviesGenerated = async () => {
+    const response = await api.post('/movies-emojis', {
+      user: customSession?.userActive
+    });
+    setCountMovieGenerated({
+      countMovies: response.data.countMovies,
+      maxMovies: response.data.maxMovies
+    });
+    setMoviesEmojizados(response.data.movies.data);
+  }
+
+  useEffect(() => {
+    listMoviesGenerated();
+  }, []);
 
   return (
     <>
@@ -85,6 +136,13 @@ export default function Home() {
             height={32}
             alt="Logo"
           />
+
+          <div className={styles.countMoviesContainer}>
+            <span>Você já emojizou</span>
+            <span className={styles.countMoviesText}>
+              {countMovieGenerated.countMovies} de {countMovieGenerated.maxMovies} filmes
+            </span>
+          </div>
 
           <div className={styles.userInfo}>
             <div>
@@ -123,7 +181,9 @@ export default function Home() {
         {
           isError && (
             <div className={styles.error}>
-              <p>Eita, deu erro! Pode enviar um print no meu instagram? <a href="https://ig.me/m/rodrigo.dev.json" target='_blank'>@rodrigo.dev.json</a></p>
+              <p>
+                {errorMessage}
+              </p>
             </div>
           )
         }
@@ -132,8 +192,8 @@ export default function Home() {
         
         <div className={styles.list}>
           {
-            moviesEmojizados.map(movie => (
-              <Card movieName={movie.movieName} movieEmoji={movie.movieEmojizado} />
+            moviesEmojizados.map(({ data }) => (
+              <Card key={data.movieName} movieName={data.movieName} movieEmoji={data.movieEmojizado} />
             ))
           }
         </div>

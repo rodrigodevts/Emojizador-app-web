@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, { Awaitable, Session } from "next-auth";
 import { fauna } from "@/services/fauna";
 import { query } from "faunadb";
 import GoogleProvider from "next-auth/providers/google";
@@ -9,8 +9,10 @@ type User = {
 	imagem?: string;
 	maxMovies: number;
 	countMovies: number;
-	created_at: Date;
+	created_at: string;
 }
+
+
 
 export default NextAuth({
 	providers: [
@@ -21,29 +23,26 @@ export default NextAuth({
 	],
 	secret: process.env.JWT_SECRET,
 	callbacks: {
-		async session({ session }) {
+		async session({ session, token, user }) {
 			try {
-				const userActive = await fauna.query(
-					query.Get(
-						query.Match(
-							query.Select(
-								"ref",
-								query.Get(
-									query.Match(
-										query.Index("user_by_email"),
-										query.Casefold(session?.user?.email!)
-									),
-								),
-							),
-						),
-					),
+				const userRef = await fauna.query(
+					query.Select(
+						"ref",
+						query.Get(
+							query.Match(
+								query.Index("user_by_email"),
+								query.Casefold(session?.user?.email!)
+							)
+						)
+					)
 				);
 
 				return {
 					...session,
-					userActive: userActive,
+					userActive: userRef,
 				};
 			} catch (err) {
+				console.log('Error: ', err);
 				return {
 					...session,
 					userActive: null,
@@ -63,7 +62,7 @@ export default NextAuth({
 				imagem: user?.image!,
 				maxMovies: 3,
 				countMovies: 0,
-				created_at: new Date()
+				created_at: new Date().toString()
 			};
 
 			await fauna.query(

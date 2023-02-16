@@ -16,7 +16,7 @@ export default function Login() {
 	const handleSubmit = async () => {
 		try {
 			setLoading(true);
-			signIn("github");
+			signIn();
 			setLoading(false);
 		} catch (err) {
 			setLoading(false);
