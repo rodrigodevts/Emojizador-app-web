@@ -14,6 +14,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
   useEffect(() => {
     AOS.init();
   }, []);
+
   return <SessionProvider session={session}>
     <style jsx global>{`
         html {

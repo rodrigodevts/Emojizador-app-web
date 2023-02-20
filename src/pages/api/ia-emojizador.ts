@@ -1,6 +1,6 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import { fauna } from '@/services/fauna';
 import { query } from 'faunadb';
-import type { NextApiRequest, NextApiResponse } from 'next';
 import { Configuration, OpenAIApi } from 'openai';
 
 const configuration = new Configuration({
