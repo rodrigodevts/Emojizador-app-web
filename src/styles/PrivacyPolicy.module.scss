@@ -1,0 +1,16 @@
+.subTitle {
+	font-size: 1.125rem;
+	font-weight: 700;
+	color: var(--white);
+} 
+
+.text {
+	margin: 20px;
+	font-size: 1rem;
+	font-weight: 400;
+	color: var(--gray-200);
+
+	a {
+		text-decoration: underline;
+	}
+}
