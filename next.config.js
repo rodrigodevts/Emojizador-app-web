@@ -9,7 +9,7 @@ const nextConfig = {
         port: '',
       }
     ]
-  }
+  },
 }
 
 module.exports = nextConfig

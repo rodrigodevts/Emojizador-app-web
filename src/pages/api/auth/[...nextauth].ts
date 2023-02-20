@@ -17,6 +17,11 @@ export default NextAuth({
 		GoogleProvider({
 			clientId: process.env.GOOGLE_AUTH_CLIENT_ID!,
 			clientSecret: process.env.GOOGLE_AUTH_CLIENT_SECRET!,
+			authorization: {
+				params: {
+					scope: "read:user",
+				},
+			},
 		}),
 	],
 	secret: process.env.JWT_SECRET,
