@@ -43,7 +43,7 @@ interface CustomSessionProps extends Session {
 }
 
 export default function Home() {
-  const [ loading, setLoading ] = useState(false);
+  const [ loading, setLoading ] = useState(true);
   const [ isError, setIsError ] = useState(false);
   const [ errorMessage, setErrorMessage ] = useState('');
   const [countMovieGenerated, setCountMovieGenerated] = useState<CountMovieGeneratedType>({} as CountMovieGeneratedType);

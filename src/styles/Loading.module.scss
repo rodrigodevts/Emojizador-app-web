@@ -2,6 +2,14 @@ $size: 24px;
 $color: var(--white);
 $no-of-fume: 3;
 
+@function responsive-value($resolution, $base-value) {
+	$base-resolution: 1536;
+	$ratio: $resolution / $base-resolution;
+	$value: $base-value;
+	$responsive-value: $value * $ratio;
+	@return #{$responsive-value}px;
+}
+
 @keyframes coffee {
 	100% {
 		opacity: 0;
@@ -50,4 +58,154 @@ $no-of-fume: 3;
 			animation-delay: random(10) * .1s;
 		}
 	}
+
+	@media (max-width: 1024px) {
+		$size: 10px;
+		height: $size;
+		width: $size;
+		padding: responsive-value(1024, 2);
+
+		&:before {
+			height: ($size * .65);
+			width: ($size / 2);
+			border: ($size * .1) solid $color;
+			margin-top: -(($size * .65) / 2);
+			margin-left: -($size / 4);
+			border-radius: (24px * .1);
+		}
+
+		div {
+			height: ($size / 2);
+			width: ($size / 5);
+		}
+
+		@for $fume from 1 through $no-of-fume {
+			$margin: responsive-value(1024, 2);
+			$left: ($size / 10)+$margin;
+
+			div:nth-child(#{$fume}) {
+				animation-delay: random(10) * .1s;
+			}
+		}
+	}
+
+	@media (max-width: 768px) {
+		$size: 10px;
+		height: $size;
+		width: $size;
+		padding: responsive-value(768, 2);
+
+		&:before {
+			height: ($size * .65);
+			width: ($size / 2);
+			border: ($size * .1) solid $color;
+			margin-top: -(($size * .65) / 2);
+			margin-left: -($size / 4);
+			border-radius: (24px * .1);
+		}
+
+		div {
+			height: ($size / 2);
+			width: ($size / 5);
+		}
+
+		@for $fume from 1 through $no-of-fume {
+			$margin: responsive-value(768, 2);
+			$left: ($size / 10)+$margin;
+
+			div:nth-child(#{$fume}) {
+				animation-delay: random(10) * .1s;
+			}
+		}
+	}
+
+	@media (max-width: 425px) {
+		$size: 6px;
+		height: $size;
+		width: $size;
+		padding: responsive-value(425, 2);
+
+		&:before {
+			height: ($size * .65);
+			width: ($size / 2);
+			border: ($size * .1) solid $color;
+			margin-top: -(($size * .65) / 2);
+			margin-left: -($size / 4);
+			border-radius: (24px * .1);
+		}
+
+		div {
+			height: ($size / 2);
+			width: ($size / 5);
+		}
+
+		@for $fume from 1 through $no-of-fume {
+			$margin: responsive-value(425, 2);
+			$left: ($size / 10)+$margin;
+
+			div:nth-child(#{$fume}) {
+				animation-delay: random(10) * .1s;
+			}
+		}
+	}
+
+	@media (max-width: 375px) {
+		$size: 5.859375px;
+		height: $size;
+		width: $size;
+		padding: responsive-value(375, 2);
+
+		&:before {
+			height: ($size * .65);
+			width: ($size / 2);
+			border: ($size * .1) solid $color;
+			margin-top: -(($size * .65) / 2);
+			margin-left: -($size / 4);
+			border-radius: (24px * .1);
+		}
+
+		div {
+			height: ($size / 2);
+			width: ($size / 5);
+		}
+
+		@for $fume from 1 through $no-of-fume {
+			$margin: responsive-value(375, 2);
+			$left: ($size / 10)+$margin;
+
+			div:nth-child(#{$fume}) {
+				animation-delay: random(10) * .1s;
+			}
+		}
+	}
+
+		@media (max-width: 320px) {
+			$size: 3px;
+			height: $size;
+			width: $size;
+			padding: responsive-value(320, 2);
+	
+			&:before {
+				height: ($size * .65);
+				width: ($size / 2);
+				border: ($size * .1) solid $color;
+				margin-top: -(($size * .65) / 2);
+				margin-left: -($size / 4);
+				border-radius: (24px * .1);
+			}
+	
+			div {
+				height: ($size / 2);
+				width: ($size / 5);
+			}
+	
+			@for $fume from 1 through $no-of-fume {
+				$margin: responsive-value(320, 2);
+				$left: ($size / 10)+$margin;
+	
+				div:nth-child(#{$fume}) {
+					animation-delay: random(10) * .1s;
+				}
+			}
+		}
 }

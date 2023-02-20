@@ -5,14 +5,17 @@ import { GetServerSideProps } from 'next';
 import { getSession, signIn } from 'next-auth/react';
 
 import Loading from '@/component/loading';
+import WordTypist from '@/component/word_typist';
 
 import { FaGoogle } from 'react-icons/fa';
-import background from '../../../public/background.png';
-import styles from '@/styles/Login.module.scss';
+import banner from '../../../public/banner.png';
+import styles from '@/styles/SignIn.module.scss';
+
+const words_typist = ['Venha se divertir no emojizador.', 'Adivinha qual o filme:🧙🏻‍♂️💍?', 'Duvido você acertar agora:👨👴🚗🕒?'];
 
 export default function Login() {
 	const [loading, setLoading] = useState(false);
-	
+
 	const handleSubmit = async () => {
 		try {
 			setLoading(true);
@@ -22,8 +25,8 @@ export default function Login() {
 			setLoading(false);
 			console.log(err);
 		}
-	}
-
+	};
+	
 	return (
 		<>
 			<Head>
@@ -32,19 +35,21 @@ export default function Login() {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/icon.ico" />
 			</Head>
+			<header className={styles.header}>
+				<Image
+					src="./Logo.svg"
+					width={168}
+					height={32}
+					alt="Logo"
+				/>
+			</header>
 			<main className={styles.main}>
-				<header className={styles.header}>
-					<Image
-						src="./Logo.svg"
-						width={168}
-						height={32}
-						alt="Logo"
-					/>
-				</header>
 				<div className={styles.sigIn}>
 					<div className={styles.title}>
 						<h1>
-							Venha se divertir no emojizador.
+							<WordTypist
+								words={words_typist}
+							/>
 						</h1>
 						<p>Utilize sua conta Google (Gmail) para se conectar</p>
 					</div>
@@ -65,10 +70,8 @@ export default function Login() {
 					</button>
 				</div>
 				<Image
-					className={styles.background}
-					src={background}
-					width={960}
-					height={241}
+					className={styles.banner}
+					src={banner}
 					alt="Emojis"
 				/>
 			</main>
