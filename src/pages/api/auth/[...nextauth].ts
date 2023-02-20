@@ -19,7 +19,7 @@ export default NextAuth({
 			clientSecret: process.env.GOOGLE_AUTH_CLIENT_SECRET!,
 			authorization: {
 				params: {
-					scope: "read:user",
+					scope: "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email",
 				},
 			},
 		}),
