@@ -8,7 +8,7 @@ interface CardProps {
 
 const Card = ({ movieName, movieEmoji }: CardProps) => {
 	return (
-		<div className={styles.card}>
+		<div className={styles.card} data-aos="fade-right">
 			<span className={styles.movieName}>{movieName}</span>
 			<span className={styles.movieEmoji}>{movieEmoji}</span>
 			<button className={styles.copyEmoji}>

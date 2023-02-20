@@ -49,11 +49,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-
-  img {
-    width: responsive-value(768, 168);
-    height: responsive-value(768, 32);
-  }
   
   @media (max-width: 1024px) {
     img {
@@ -192,6 +187,7 @@
   gap: 20px;
 
   div {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -202,6 +198,7 @@
 
     border: 2px solid var(--violet-700);
     border-radius: 9999px;
+
     img {
       border-radius: 9999px;
     }
@@ -211,6 +208,9 @@
     cursor: pointer;
     color: var(--white);
 
+    width: 24px;
+    height: 24px;
+      
     transition: color 0.2s;
     &:hover {
       color: var(--violet-300);
@@ -219,18 +219,13 @@
   
   @media (max-width: 1024px) {
     gap: responsive-value(1024, 20);
-    
-    img {
-      width: responsive-value(1024, 46);
-      height: responsive-value(1024, 46);
-    }
 
     div {
       width: responsive-value(1024, 52);
       height: responsive-value(1024, 52);
       padding: responsive-value(1024, 4);
     }
-
+    
     svg {
       width: responsive-value(1024, 24);
       height: responsive-value(1024, 24);
@@ -240,15 +235,12 @@
   @media (max-width: 768px) {
     gap: responsive-value(768, 20);
     
-    img {
-      width: responsive-value(768, 46);
-      height: responsive-value(768, 46);
-    }
-
+    
     div {
       width: responsive-value(768, 52);
       height: responsive-value(768, 52);
       padding: responsive-value(768, 4);
+  
     }
 
     svg {
@@ -261,15 +253,12 @@
   @media (max-width: 426px) {
     gap: responsive-value(425, 20);
     
-    img {
-      width: responsive-value(425, 46);
-      height: responsive-value(425, 46);
-    }
-
+    
     div {
       width: responsive-value(425, 52);
       height: responsive-value(425, 52);
       padding: responsive-value(425, 4);
+  
     }
 
     svg {
@@ -281,15 +270,12 @@
   @media (max-width: 375px) {
     gap: responsive-value(375, 20);
     
-    img {
-      width: responsive-value(375, 46);
-      height: responsive-value(375, 46);
-    }
-
+    
     div {
       width: responsive-value(375, 52);
       height: responsive-value(375, 52);
       padding: responsive-value(375, 4);
+  
     }
 
     svg {
@@ -301,15 +287,12 @@
   @media (max-width: 320px) {
     gap: responsive-value(320, 20);
     
-    img {
-      width: responsive-value(320, 46);
-      height: responsive-value(320, 46);
-    }
-
+    
     div {
       width: responsive-value(320, 52);
       height: responsive-value(320, 52);
       padding: responsive-value(320, 4);
+  
     }
 
     svg {
@@ -654,6 +637,17 @@
     margin: responsive-value(320, 20) 0px;
   }
 
+}
+
+.loadingData {
+  width: 100%;
+  height: 100%;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 60px;
 }
 
 .list {

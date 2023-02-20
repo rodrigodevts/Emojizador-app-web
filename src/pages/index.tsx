@@ -44,6 +44,7 @@ interface CustomSessionProps extends Session {
 
 export default function Home() {
   const [ loading, setLoading ] = useState(true);
+  const [ loadingData, setLoadingData ] = useState(true);
   const [ isError, setIsError ] = useState(false);
   const [ errorMessage, setErrorMessage ] = useState('');
   const [countMovieGenerated, setCountMovieGenerated] = useState<CountMovieGeneratedType>({} as CountMovieGeneratedType);
@@ -106,6 +107,7 @@ export default function Home() {
   }
 
   const listMoviesGenerated = async () => {
+    setLoadingData(true);
     const response = await api.post('/movies-emojis', {
       user: customSession?.userActive
     });
@@ -114,6 +116,7 @@ export default function Home() {
       maxMovies: response.data.maxMovies
     });
     setMoviesEmojizados(response.data.movies.data);
+    setLoadingData(false);
   }
 
   useEffect(() => {
@@ -148,9 +151,8 @@ export default function Home() {
             <div>
               <Image
                 src={user.user_avatar}
-                width={46}
-                height={46}
                 alt="Logo"
+                fill={true}
               />
             </div>
             <FiLogOut size={24} onClick={() => signOut()} />
@@ -189,14 +191,22 @@ export default function Home() {
         }
 
         <div className={styles.divider} />
-        
-        <div className={styles.list}>
+
           {
-            moviesEmojizados.map(({ data }) => (
-              <Card key={data.movieName} movieName={data.movieName} movieEmoji={data.movieEmojizado} />
-            ))
+            loadingData ? (
+              <div className={styles.loadingData}>
+                <Loading />
+              </div>
+          ) : (
+              <div className={styles.list}>
+                {
+                  moviesEmojizados.map(({ data }) => (
+                    <Card key={data.movieName} movieName={data.movieName} movieEmoji={data.movieEmojizado} />
+                  ))
+                }
+              </div>
+            )
           }
-        </div>
       </main>
     </>
   )
