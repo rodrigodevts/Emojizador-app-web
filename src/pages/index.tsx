@@ -143,7 +143,7 @@ export default function Home() {
           <div className={styles.countMoviesContainer}>
             <span>Você já emojizou</span>
             <span className={styles.countMoviesText}>
-              {countMovieGenerated.countMovies && 0} de {countMovieGenerated.maxMovies && 3} filmes
+              {countMovieGenerated.countMovies || 0} de {countMovieGenerated.maxMovies || 3} filmes
             </span>
           </div>
 
