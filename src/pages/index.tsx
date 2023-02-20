@@ -43,8 +43,8 @@ interface CustomSessionProps extends Session {
 }
 
 export default function Home() {
-  const [ loading, setLoading ] = useState(true);
-  const [ loadingData, setLoadingData ] = useState(true);
+  const [ loading, setLoading ] = useState(false);
+  const [ loadingData, setLoadingData ] = useState(false);
   const [ isError, setIsError ] = useState(false);
   const [ errorMessage, setErrorMessage ] = useState('');
   const [countMovieGenerated, setCountMovieGenerated] = useState<CountMovieGeneratedType>({} as CountMovieGeneratedType);
@@ -143,7 +143,7 @@ export default function Home() {
           <div className={styles.countMoviesContainer}>
             <span>Você já emojizou</span>
             <span className={styles.countMoviesText}>
-              {countMovieGenerated.countMovies} de {countMovieGenerated.maxMovies} filmes
+              {countMovieGenerated.countMovies && 0} de {countMovieGenerated.maxMovies && 3} filmes
             </span>
           </div>
 

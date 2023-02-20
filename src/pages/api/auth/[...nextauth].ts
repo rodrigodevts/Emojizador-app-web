@@ -1,7 +1,7 @@
-import NextAuth, { Awaitable, Session } from "next-auth";
-import { fauna } from "@/services/fauna";
+import NextAuth from "next-auth";
 import { query } from "faunadb";
 import GoogleProvider from "next-auth/providers/google";
+import { fauna } from "@/services/fauna";
 
 type User = {
 	name?: string;
@@ -11,8 +11,6 @@ type User = {
 	countMovies: number;
 	created_at: string;
 }
-
-
 
 export default NextAuth({
 	providers: [
