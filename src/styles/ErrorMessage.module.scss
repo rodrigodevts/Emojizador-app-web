@@ -1,0 +1,61 @@
+.error {
+	width: 100%;
+	text-align: left;
+	margin-top: 10px;
+	padding-left: 4px;
+
+	p {
+		font-size: 1rem;
+		color: var(--red-750);
+
+		a {
+			color: var(--violet-300);
+		}
+	}
+
+	@media (max-width: 1024px) {
+		margin-top: responsive-value(1024, 10);
+		padding-left: responsive-value(1024, 4);
+
+		p {
+			font-size: responsive-value(1024, 16);
+		}
+	}
+
+	@media (max-width: 768px) {
+		margin-top: responsive-value(768, 10);
+		padding-left: responsive-value(768, 4);
+
+		p {
+			font-size: responsive-value(768, 16);
+		}
+	}
+
+	@media (max-width: 426px) {
+		margin-top: responsive-value(425, 10);
+		padding-left: responsive-value(425, 4);
+
+		p {
+			font-size: responsive-value(425, 16);
+		}
+	}
+
+	@media (max-width: 375px) {
+		margin-top: responsive-value(375, 10);
+		padding-left: responsive-value(375, 4);
+
+		p {
+			font-size: responsive-value(375, 16);
+		}
+	}
+
+	@media (max-width: 320px) {
+		margin-top: responsive-value(320, 10);
+		padding-left: responsive-value(320, 4);
+
+		p {
+			font-size: responsive-value(320, 16);
+		}
+	}
+
+}
