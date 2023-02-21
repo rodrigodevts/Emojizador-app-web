@@ -1,0 +1,266 @@
+.header {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+
+	@media (max-width: 1024px) {
+		img {
+			width: responsive-value(1024, 168);
+			height: responsive-value(1024, 32);
+		}
+	}
+
+	@media (max-width: 768px) {
+		img {
+			width: responsive-value(768, 168);
+			height: responsive-value(768, 32);
+		}
+	}
+
+	@media (max-width: 426px) {
+		img {
+			width: responsive-value(425, 168);
+			height: responsive-value(425, 32);
+		}
+	}
+
+	@media (max-width: 375px) {
+		img {
+			width: responsive-value(375, 168);
+			height: responsive-value(375, 32);
+		}
+	}
+
+	@media (max-width: 320px) {
+		img {
+			width: responsive-value(320, 168);
+			height: responsive-value(320, 32);
+		}
+	}
+
+}
+
+.countMoviesContainer {
+	width: 100%;
+	max-width: 150px;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 7px;
+
+	.countMoviesContainer>span {
+		font-weight: 400;
+		font-size: 1rem;
+		line-height: 1.1875rem;
+		color: var(--white);
+	}
+
+	@media (max-width: 1024px) {
+		gap: responsive-value(1024, 7);
+
+		.countMoviesContainer,
+		span {
+			font-size: responsive-value(1024, 16);
+			line-height: responsive-value(1024, 19);
+		}
+	}
+
+	@media (max-width: 768px) {
+		gap: responsive-value(768, 7);
+
+		.countMoviesContainer,
+		span {
+			font-size: responsive-value(768, 16);
+			line-height: responsive-value(768, 19);
+		}
+	}
+
+	@media (max-width: 426px) {
+		gap: responsive-value(425, 7);
+
+		.countMoviesContainer,
+		span {
+			font-size: responsive-value(425, 16);
+			line-height: responsive-value(425, 19);
+		}
+	}
+
+	@media (max-width: 375px) {
+		gap: responsive-value(375, 7);
+
+		.countMoviesContainer,
+		span {
+			font-size: responsive-value(375, 16);
+			line-height: responsive-value(375, 19);
+		}
+	}
+
+	@media (max-width: 320px) {
+		gap: responsive-value(320, 7);
+
+		.countMoviesContainer,
+		span {
+			font-size: responsive-value(320, 16);
+			line-height: responsive-value(320, 19);
+		}
+	}
+}
+
+.countMoviesText {
+	font-weight: 800;
+	font-size: 1.375rem;
+	line-height: 1.6875rem;
+	color: var(--violet-500);
+
+	@media (max-width: 1024px) {
+		font-size: responsive-value(1024, 22);
+		line-height: responsive-value(1024, 27);
+	}
+
+	@media (max-width: 768px) {
+		font-size: responsive-value(768, 22);
+		line-height: responsive-value(768, 27);
+	}
+
+	@media (max-width: 426px) {
+		font-size: responsive-value(425, 22);
+		line-height: responsive-value(768, 27);
+	}
+
+	@media (max-width: 375px) {
+		font-size: responsive-value(375, 22);
+		line-height: responsive-value(375, 27);
+	}
+
+	@media (max-width: 320px) {
+		font-size: responsive-value(320, 22);
+		line-height: responsive-value(320, 27);
+	}
+}
+
+.userInfo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+
+	div {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		width: 52px;
+		height: 52px;
+		padding: 4px;
+
+		border: 2px solid var(--violet-700);
+		border-radius: 9999px;
+
+		img {
+			border-radius: 9999px;
+		}
+	}
+
+	svg {
+		cursor: pointer;
+		color: var(--white);
+
+		width: 24px;
+		height: 24px;
+
+		transition: color 0.2s;
+
+		&:hover {
+			color: var(--violet-300);
+		}
+	}
+
+	@media (max-width: 1024px) {
+		gap: responsive-value(1024, 20);
+
+		div {
+			width: responsive-value(1024, 52);
+			height: responsive-value(1024, 52);
+			padding: responsive-value(1024, 4);
+		}
+
+		svg {
+			width: responsive-value(1024, 24);
+			height: responsive-value(1024, 24);
+		}
+	}
+
+	@media (max-width: 768px) {
+		gap: responsive-value(768, 20);
+
+
+		div {
+			width: responsive-value(768, 52);
+			height: responsive-value(768, 52);
+			padding: responsive-value(768, 4);
+
+		}
+
+		svg {
+			width: responsive-value(768, 24);
+			height: responsive-value(768, 24);
+		}
+	}
+
+
+	@media (max-width: 426px) {
+		gap: responsive-value(425, 20);
+
+
+		div {
+			width: responsive-value(425, 52);
+			height: responsive-value(425, 52);
+			padding: responsive-value(425, 4);
+
+		}
+
+		svg {
+			width: responsive-value(425, 24);
+			height: responsive-value(425, 24);
+		}
+	}
+
+	@media (max-width: 375px) {
+		gap: responsive-value(375, 20);
+
+
+		div {
+			width: responsive-value(375, 52);
+			height: responsive-value(375, 52);
+			padding: responsive-value(375, 4);
+
+		}
+
+		svg {
+			width: responsive-value(375, 24);
+			height: responsive-value(375, 24);
+		}
+	}
+
+	@media (max-width: 320px) {
+		gap: responsive-value(320, 20);
+
+
+		div {
+			width: responsive-value(320, 52);
+			height: responsive-value(320, 52);
+			padding: responsive-value(320, 4);
+
+		}
+
+		svg {
+			width: responsive-value(320, 24);
+			height: responsive-value(320, 24);
+		}
+	}
+}
