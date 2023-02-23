@@ -5,6 +5,12 @@
 	$responsive-value: $value * $ratio;
 	@return #{$responsive-value}rem;
 }
+@function responsive-valuePx($resolution, $base-value) {
+	$base-resolution: 1536;
+	$ratio: $resolution / $base-resolution;
+	$responsive-value: $base-value * $ratio;
+	@return #{$responsive-value}px;
+}
 
 .main {
 	width: 100%;
@@ -35,17 +41,18 @@
 		gap: responsive-value(768, 50);
 	};
 
-	@media (max-width: 426px) {
-		max-width: responsive-value(425, 960);
-		min-height: calc(100vh - responsive-value(425, 342));
-		padding: responsive-value(425, 10) responsive-value(425, 20);
-		gap: responsive-value(425, 50);
+	@media (max-width: 414px) {
+		max-width: 346px;
+		min-height: calc(100vh - responsive-value(414, 310));
+		padding: responsive-value(414, 10) responsive-value(414, 20);
+		gap: responsive-value(414, 50);
 		flex-direction: column;
 		align-items: flex-start;
 		justify-content: flex-start;
-		margin-top: responsive-value(425, 100);
-		gap: responsive-value(425, 120);
+		margin-top: responsive-valuePx(414, 120);
+		gap: responsive-value(414, 120);
 	};
+
 
 	@media (max-width: 376px) {
 		max-width: responsive-value(375, 960);
@@ -85,55 +92,28 @@
 		max-width: responsive-value(1024, 960);
 		padding: responsive-value(1024, 10) responsive-value(1024, 20);
 		margin-top: responsive-value(1024, 50);
-		
-		img {
-			width: responsive-value(1024, 168);
-			height: responsive-value(1024, 32);
-		}
 	};
 
 	@media (max-width: 768px) {
 		max-width: responsive-value(768, 960);
 		padding: responsive-value(768, 10) responsive-value(768, 20);
 		margin-top: responsive-value(768, 50);
-		
-		img {
-			width: responsive-value(768, 168);
-			height: responsive-value(768, 32);
-		}
 	};
 
-	@media (max-width: 426px) {
-		max-width: responsive-value(425, 960);
-		padding: responsive-value(425, 10) responsive-value(425, 20);
-		margin-top: responsive-value(425, 50);
-		
-		img {
-			width: responsive-value(426, 168);
-			height: responsive-value(426, 32);
-		}
+	@media (max-width: 414px) {
+		max-width: 346px;
 	};
 
 	@media (max-width: 376px) {
 		max-width: responsive-value(376, 960);
 		padding: responsive-value(376, 10) responsive-value(376, 20);
 		margin-top: responsive-value(376, 50);
-		
-		img {
-			width: responsive-value(376, 168);
-			height: responsive-value(376, 32);
-		}
 	};
 
 	@media (max-width: 320px) {
 		max-width: responsive-value(320, 960);
 		padding: responsive-value(320, 10) responsive-value(320, 20);
 		margin-top: responsive-value(320, 50);
-		
-		img {
-			width: responsive-value(320, 168);
-			height: responsive-value(320, 32);
-		}
 	};
 }
 
@@ -161,20 +141,9 @@
 		gap: responsive-value(768, 18);
 	};
 
-	@media (max-width: 426px) {
-		max-width: responsive-value(425, 510);
-		gap: responsive-value(425, 18);
+	@media (max-width: 414px) {
+		max-width: 346px;
 	};
-
-	@media (max-width: 376px) {
-		max-width: responsive-value(376, 510);
-		gap: responsive-value(376, 18);
-	}
-
-	@media (max-width: 320px) {
-		max-width: responsive-value(320, 510);
-		gap: responsive-value(320, 18);
-	}
 }
 
 .title {
@@ -246,49 +215,49 @@
 		}
 	};
 
-	@media (max-width: 426px) {
-		max-width: responsive-value(425, 717);
-		gap: responsive-value(425, 8);
+	@media (max-width: 425px) {
+		max-width: 717px;
+		gap: 8px;
 
 		h1 {
-			font-size: responsive-value(425, 55);
-			max-width: responsive-value(425, 717);
-			height: responsive-value(425, 132);
+			font-size: responsive-value(960, 55);
+			height: 140px;
 		}
 
 		p {
-			font-size: responsive-value(425, 20);
+			font-size: responsive-value(960, 20);
 		}
 	};
-	
+
+	@media (max-width: 414px) {
+		max-width: 717px;
+		gap: 8px;
+
+		h1 {
+			font-size: 2.0625rem;
+			max-width: 717px;
+			height: 130px;
+		}
+
+		p {
+			font-size: 1.25rem;
+		}
+	};
+
 	@media (max-width: 376px) {
-		max-width: responsive-value(376, 717);
-		gap: responsive-value(376, 8);
+		max-width: 717px;
+		gap: 8px;
 
 		h1 {
-			font-size: responsive-value(376, 55);
-			max-width: responsive-value(376, 717);
-			height: responsive-value(376, 132);
+			font-size: responsive-value(960, 55);
+			max-width: responsive-value(960, 717);
+			height: 130px;
 		}
 
 		p {
-			font-size: responsive-value(376, 20);
+			font-size: responsive-value(960, 20);
 		}
-	}
-	@media (max-width: 320px) {
-		max-width: responsive-value(320, 717);
-		gap: responsive-value(320, 8);
-
-		h1 {
-			font-size: responsive-value(320, 55);
-			max-width: responsive-value(320, 717);
-			height: responsive-value(320, 132);
-		}
-
-		p {
-			font-size: responsive-value(320, 20);
-		}
-	}
+	};
 }
 
 .signInButton {
@@ -352,49 +321,56 @@
 		}
 	}
 
-	@media (max-width: 426px) {
-		max-width: responsive-value(425, 310);
-		max-height: responsive-value(425, 46);
-		padding: responsive-value(425, 12) responsive-value(425, 24);
-		gap: responsive-value(425, 8);
+	@media (max-width: 425px) {
+		width: 100%;
+		max-width: 310px;
+		height: 100%;
+		max-height: 46px;
+		padding: 12px 24px;
+		gap: 8px;
 
-		font-size: responsive-value(425, 14);
-		line-height: responsive-value(425, 29);
+		font-size: responsive-value(425, 40);
+		line-height: responsive-value(425, 39);
 
 		svg {
-			width: responsive-value(425, 18);
-			height: responsive-value(425, 18);
+			width: 18px;
+			height: 18px;
 		}
-	}
+	};
+
+	@media (max-width: 414px) {
+		width: 100%;
+		max-width: 310px;
+		height: 100%;
+		max-height: 46px;
+		padding: 12px 24px;
+		gap: 8px;
+
+		font-size: 0.875rem;
+		line-height: 2.4375rem;
+
+		svg {
+			width: 18px;
+			height: 18px;
+		}
+	};
 
 	@media (max-width: 376px) {
-		max-width: responsive-value(376, 310);
-		max-height: responsive-value(376, 46);
-		padding: responsive-value(376, 12) responsive-value(376, 24);
-		gap: responsive-value(376, 8);
+		width: 100%;
+		max-width: 310px;
+		height: 100%;
+		max-height: 46px;
+		padding: 12px 24px;
+		gap: 8px;
 
-		font-size: responsive-value(376, 14);
+		font-size: responsive-value(376, 40);
 		line-height: responsive-value(376, 39);
 
 		svg {
-			width: responsive-value(376, 18);
-			height: responsive-value(376, 18);
+			width: 18px;
+			height: 18px;
 		}
-	}
-	@media (max-width: 320px) {
-		max-width: responsive-value(320, 310);
-		max-height: responsive-value(320, 46);
-		padding: responsive-value(320, 12) responsive-value(320, 24);
-		gap: responsive-value(320, 8);
-
-		font-size: responsive-value(320, 14);
-		line-height: responsive-value(1024, 39);
-
-		svg {
-			width: responsive-value(320, 18);
-			height: responsive-value(320, 18);
-		}
-	}
+	};
 }
 
 .banner {
@@ -412,18 +388,13 @@
 		height: responsive-value(768, 382);
 	}
 
-	@media (max-width: 426px) {
-		width: responsive-value(425, 342);
-		height: responsive-value(425, 382);
+	@media (max-width: 414px) {
+		width: 342px;
+		height: 382px;
 	}
 
 	@media (max-width: 376px) {
-		width: responsive-value(425, 342);
-		height: responsive-value(425, 382);
-	}
-
-	@media (max-width: 320px) {
-		width: responsive-value(425, 342);
-		height: responsive-value(425, 382);
+		width: responsive-value(960, 342);
+		height: responsive-value(960, 382);
 	}
 }
