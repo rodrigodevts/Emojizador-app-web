@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-let skipDelay = 10;
-let speed = 200;
+let skipDelay = 200;
+let speed = 40;
 
 type WordTypistType = {
 	words: Array<string>;
