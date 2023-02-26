@@ -57,7 +57,7 @@ export default function Form({
 				const { data } = await api.post<DataResponseType>('/ia-emojizador', {
 					prompt: message,
 					movieName,
-					user: customSession?.userActive
+					user_id: customSession?.userActive
 				});
 
 				if (data.movieGenerated?.movieEmojizado) {

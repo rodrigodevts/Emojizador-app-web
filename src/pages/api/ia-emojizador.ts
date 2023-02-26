@@ -40,9 +40,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ApiResponseType>
 ) {
-  const { user, prompt, movieName } = req.body;
-
-  const user_id = user['@ref'].id;
+  const { user_id, prompt, movieName } = req.body;
 
   try {
     const { countMovies, maxMovies } = await fauna.query<User>(
