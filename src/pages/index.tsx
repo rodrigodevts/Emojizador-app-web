@@ -8,11 +8,11 @@ import Card from '@/component/card';
 import Loading from '@/component/loading';
 import Form from '@/component/form';
 import Header from '@/component/header';
+import ErrorMessage from '@/component/error-message';
 
 import { api } from '@/services/api';
 
 import styles from '@/styles/Home.module.scss';
-import ErrorMessage from '@/component/error-message';
 
 type MoviesEmojizadosType = {
   data: {
@@ -21,26 +21,21 @@ type MoviesEmojizadosType = {
   }
 };
 
-type UserType = {
-  user_name: string;
-  user_avatar: string;
-}
-
-export type CountMoviesGeneratedType = {
+export type MoviesGeneratedCountType = {
   countMovies: number;
   maxMovies: number;
-}
+};
 
 export interface CustomSessionProps extends Session {
-  userActive: object | null;
-}
+  userActive: string;
+};
 
 export default function Home() {
   const [ loading, setLoading ] = useState(false);
   const [ isLoadingData, setIsLoadingData ] = useState(false);
   const [ isError, setIsError ] = useState(false);
   const [ errorMessage, setErrorMessage ] = useState('');
-  const [ countMoviesGenerated, setCountMoviesGenerated ] = useState<CountMoviesGeneratedType>({
+  const [ moviesGeneratedCount, setMoviesGeneratedCount ] = useState<MoviesGeneratedCountType>({
     countMovies: 0,
     maxMovies: 3,
   });
@@ -48,23 +43,18 @@ export default function Home() {
 
   const { data: session } = useSession();
 
-  // Added new typing for the session to return the userActive
-  // property added in the nextAuth callback return
-  const userSession = session as CustomSessionProps | null;
-  
-  // Set user object with name and avatar from session
-  const user: UserType = {
-    user_name: userSession?.user?.name?.split(' ')[0]!,
-    user_avatar: userSession?.user?.image!
-  }
+  const customSession = session as CustomSessionProps;
+
+  // get first name the User
+  const user_name = customSession?.user?.name?.split(' ')[0]!;
 
   const fetchMovies = useCallback(async () => {
     setIsLoadingData(true);
     try {
       const response = await api.post('/movies-emojis', {
-        user: userSession?.userActive
+        user_id: customSession?.userActive,
       });
-      setCountMoviesGenerated({
+      setMoviesGeneratedCount({
         countMovies: response.data.countMovies,
         maxMovies: response.data.maxMovies
       });
@@ -76,11 +66,13 @@ export default function Home() {
     } finally {
       setIsLoadingData(false);
     }
-  }, [userSession]);
+  }, [customSession?.userActive]);
 
   useEffect(() => {
-    fetchMovies();
-  }, [userSession]);
+    if (customSession?.userActive) {
+      fetchMovies();
+    }
+  }, [customSession?.userActive]);
 
   return (
     <>
@@ -92,11 +84,10 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <Header
-          countMoviesGenerated={countMoviesGenerated}
-          user_avatar={user.user_avatar}
+          moviesGeneratedCount={moviesGeneratedCount}
         />
         <h2 className={styles.title}>
-          Olá <span>{user.user_name},</span> <br />
+          Olá <span>{user_name},</span> <br />
           Digite o nome do seu filme preferido
           e veja a mágica acontecer
         </h2>
@@ -121,13 +112,15 @@ export default function Home() {
                 <Loading />
               </div>
           ) : (
-              <div className={styles.list}>
-                {
-                  moviesEmojizados.map(({ data }) => (
-                    <Card key={data.movieName} movieName={data.movieName} movieEmoji={data.movieEmojizado} />
-                  ))
-                }
-              </div>
+              moviesEmojizados.length > 0 && (
+                <div className={styles.list}>
+                  {
+                    moviesEmojizados.map(({ data }) => (
+                      <Card key={data.movieName} movieName={data.movieName} movieEmoji={data.movieEmojizado} />
+                    ))
+                  }
+                </div>
+              )
             )
           }
       </main>
@@ -136,10 +129,12 @@ export default function Home() {
 };
 
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getSession(context);
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const session = await getSession({ req });
 
-  if (!session) {
+  const customSession = session as CustomSessionProps;
+
+  if (!customSession?.userActive) {
     return {
       redirect: {
         destination: '/signin',

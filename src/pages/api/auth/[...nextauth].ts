@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import { query } from "faunadb";
 import GoogleProvider from "next-auth/providers/google";
 import { fauna } from "@/services/fauna";
+import { parseCollectionReference } from "@/utils/parseCollectionReference";
 
 type User = {
 	name?: string;
@@ -10,6 +11,12 @@ type User = {
 	maxMovies: number;
 	countMovies: number;
 	created_at: string;
+}
+
+type UserRef = {
+	[key: string]: {
+		id: string;
+	}
 }
 
 export default NextAuth({
@@ -35,14 +42,16 @@ export default NextAuth({
 							query.Match(
 								query.Index("user_by_email"),
 								query.Casefold(session?.user?.email!)
-							)
-						)
-					)
+							),
+						),
+					),
 				);
+
+				const userReference = parseCollectionReference(String(userRef));
 
 				return {
 					...session,
-					userActive: userRef,
+					userActive: userReference.id,
 				};
 			} catch (err) {
 				console.log('Error: ', err);

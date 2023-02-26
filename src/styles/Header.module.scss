@@ -245,3 +245,17 @@
 		}
 	}
 }
+
+.defaultAvatar {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 52px;
+	height: 52px;
+	padding: 4px;
+
+	border: 2px solid var(--violet-700);
+	border-radius: 9999px;
+}

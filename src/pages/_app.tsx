@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import type { AppProps } from 'next/app';
-import { SessionProvider } from 'next-auth/react';
+import { SessionProvider as NextAuthProvider } from 'next-auth/react';
 import { Roboto } from '@next/font/google';
 import AOS from 'aos';
 
@@ -15,12 +15,14 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
     AOS.init();
   }, []);
 
-  return <SessionProvider session={session}>
-    <style jsx global>{`
-        html {
-          font-family: ${roboto.style.fontFamily};
-        }
-      `}</style>
-    <Component {...pageProps} />
-  </SessionProvider>
+  return (
+    <NextAuthProvider session={session}>
+        <style jsx global>{`
+            html {
+              font-family: ${roboto.style.fontFamily};
+            }
+            `}</style>
+        <Component {...pageProps} />
+    </NextAuthProvider>
+  )
 }
