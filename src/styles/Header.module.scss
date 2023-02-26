@@ -4,42 +4,23 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
+	margin-top: 30px;
+}
 
-	@media (max-width: 1024px) {
-		img {
-			width: responsive-value(1024, 168);
-			height: responsive-value(1024, 32);
-		}
-	}
+.headerMobile {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 16px;
+}
 
-	@media (max-width: 768px) {
-		img {
-			width: responsive-value(768, 168);
-			height: responsive-value(768, 32);
-		}
-	}
-
-	@media (max-width: 426px) {
-		img {
-			width: responsive-value(425, 168);
-			height: responsive-value(425, 32);
-		}
-	}
-
-	@media (max-width: 375px) {
-		img {
-			width: responsive-value(375, 168);
-			height: responsive-value(375, 32);
-		}
-	}
-
-	@media (max-width: 320px) {
-		img {
-			width: responsive-value(320, 168);
-			height: responsive-value(320, 32);
-		}
-	}
-
+.headerTopMobile {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .countMoviesContainer {
@@ -52,7 +33,7 @@
 	justify-content: center;
 	gap: 7px;
 
-	.countMoviesContainer>span {
+	.countMoviesContainer > span {
 		font-weight: 400;
 		font-size: 1rem;
 		line-height: 1.1875rem;

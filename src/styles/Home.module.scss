@@ -24,20 +24,27 @@
   }
 
   @media (max-width: 768px) {
-    max-width: responsive-value(768, 960);
+    max-width: 692px;
     padding: responsive-value(768, 50) responsive-value(768, 10);
   };
 
   @media (max-width: 426px) {
-    max-width: responsive-value(425, 960);
+    max-width: 388px;
     padding: responsive-value(425, 50) responsive-value(425, 10);
   }
+
+  @media (max-width: 414px) {
+    max-width: 338px;
+    padding: responsive-value(414, 50) responsive-value(414, 10);
+  }
+
   @media (max-width: 375px) {
-    max-width: responsive-value(375, 960);
+    max-width: 299px;
     padding: responsive-value(375, 50) responsive-value(375, 10);
   }
+  
   @media (max-width: 320px) {
-    max-width: responsive-value(320, 960);
+    max-width: 274px;
     padding: responsive-value(320, 50) responsive-value(320, 10);
   }
 }
@@ -87,41 +94,29 @@
   }
 
   @media (max-width: 426px) {
-    max-width: responsive-value(425, 805);
-    margin-top: responsive-value(425, 100);
+    max-width: 337px;
+    margin-top: 64px;
 
-    font-size: responsive-value(425, 32);
-    line-height: responsive-value(425, 38);
+    font-size: 1.25rem;
+    line-height: 1.4375rem;
+
 
     span {
-      font-size: responsive-value(425, 32);
-      line-height: responsive-value(425, 38);
+      font-size: 1.25rem;
+      line-height: 1.4375rem;
     }
   }
 
   @media (max-width: 375px) {
-    max-width: responsive-value(375, 805);
-    margin-top: responsive-value(375, 100);
+    max-width: 337px;
+    margin-top: 64px;
 
-    font-size: responsive-value(375, 32);
-    line-height: responsive-value(375, 38);
-
-    span {
-      font-size: responsive-value(375, 32);
-      line-height: responsive-value(375, 38);
-    }
-  }
-  
-  @media (max-width: 320px) {
-    max-width: responsive-value(320, 805);
-    margin-top: responsive-value(320, 100);
-
-    font-size: responsive-value(320, 32);
-    line-height: responsive-value(320, 38);
+    font-size: 1rem;
+    line-height: 1.4375rem;
 
     span {
-      font-size: responsive-value(320, 32);
-      line-height: responsive-value(320, 38);
+      font-size: 1rem;
+      line-height: 1.4375rem;
     }
   }
 }
@@ -140,17 +135,8 @@
   }
 
   @media (max-width: 426px) {
-    margin: responsive-value(425, 20) 0px;
+    margin: 20px 0px;
   }
-
-  @media (max-width: 375px) {
-    margin: responsive-value(375, 20) 0px;
-  }
-
-  @media (max-width: 320px) {
-    margin: responsive-value(320, 20) 0px;
-  }
-
 }
 
 .loadingData {
@@ -181,15 +167,6 @@
   }
   
   @media (max-width: 426px) {
-    gap: responsive-value(425, 21);
+    gap: 21px;
   }
-
-  @media (max-width: 375px) {
-    gap: responsive-value(375, 21);
-  }
-
-  @media (max-width: 320px) {
-    gap: responsive-value(320, 21);
-  }
-
 }

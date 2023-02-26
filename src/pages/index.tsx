@@ -69,6 +69,7 @@ export default function Home() {
         maxMovies: response.data.maxMovies
       });
       setMoviesEmojizados(response.data.movies.data);
+      setIsError(false);
     } catch (error) {
       setIsError(true);
       setErrorMessage('Ocorreu um erro ao buscar os filmes emojizados!');

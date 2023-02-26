@@ -41,16 +41,8 @@
 	}
 
 	@media (max-width: 426px) {
-		padding: responsive-value(425, 49) responsive-value(425, 160) responsive-value(425, 49) responsive-value(425, 43);
-		max-height: responsive-value(425, 132);
-	}
-	@media (max-width: 375px) {
-		padding: responsive-value(375, 49) responsive-value(375, 160) responsive-value(375, 49) responsive-value(375, 43);
-		max-height: responsive-value(375, 132);
-	}
-	@media (max-width: 320px) {
-		padding: responsive-value(320, 49) responsive-value(320, 160) responsive-value(320, 49) responsive-value(320, 43);
-		max-height: responsive-value(320, 132);
+		padding: 33px 71px 33px 20px;
+		max-height: 82px;
 	}
 }
 
@@ -71,16 +63,8 @@
 	}
 
 	@media (max-width: 426px) {
-		font-size: responsive-value(425, 28);
-		line-height: responsive-value(425, 33);
-	}
-	@media (max-width: 375px) {
-		font-size: responsive-value(375, 28);
-		line-height: responsive-value(375, 33);
-	}
-	@media (max-width: 320px) {
-		font-size: responsive-value(320, 28);
-		line-height: responsive-value(320, 33);
+		font-size: 0.875rem;
+		line-height: 1rem;
 	}
 }
 
@@ -100,16 +84,8 @@
 	}
 
 	@media (max-width: 426px) {
-		font-size: responsive-value(425, 48);
-		line-height: responsive-value(425, 33);
-	}
-	@media (max-width: 375px) {
-		font-size: responsive-value(375, 48);
-		line-height: responsive-value(375, 33);
-	}
-	@media (max-width: 320px) {
-		font-size: responsive-value(320, 48);
-		line-height: responsive-value(320, 33);
+		font-size: 1.2rem;
+		line-height: 1.1875rem;
 	}
 }
 
@@ -157,32 +133,12 @@
 	}
 
 	@media (max-width: 426px) {
-		padding: responsive-value(425, 44) responsive-value(425, 25);
+		padding: 27px 14px;
 		line-height: responsive-value(425, 33);
 
 		svg {
-			width: responsive-value(425, 24);
-			height: responsive-value(425, 24);
-		}
-	}
-
-	@media (max-width: 375px) {
-		padding: responsive-value(375, 44) responsive-value(375, 25);
-		line-height: responsive-value(375, 33);
-
-		svg {
-			width: responsive-value(375, 24);
-			height: responsive-value(375, 24);
-		}
-	}
-	
-	@media (max-width: 320px) {
-		padding: responsive-value(320, 44) responsive-value(320, 25);
-		line-height: responsive-value(320, 33);
-
-		svg {
-			width: responsive-value(320, 24);
-			height: responsive-value(320, 24);
+			width: 24px;
+			height: 24px;
 		}
 	}
 }

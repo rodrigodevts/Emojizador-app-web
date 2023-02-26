@@ -81,19 +81,16 @@
 		margin-top: responsive-value(768, 40);
 
 		input {
-			max-width: responsive-value(768, 761);
-			padding: responsive-value(768, 24) responsive-value(768, 29);
 			height: 100%;
-			max-height: responsive-value(768, 71);
-			font-size: responsive-value(768, 18);
-			line-height: responsive-value(768, 21);
+			padding: 16px 29px;
+			font-size: 0.875rem;
+			line-height: 1rem;
 		}
 
 		button {
-			max-width: responsive-value(768, 199);
-			padding: responsive-value(768, 24);
-			font-size: responsive-value(768, 18);
-			line-height: responsive-value(768, 21);
+			padding: 17px;
+			font-size: 0.75rem;
+			line-height: 0.875rem;
 		}
 	}
 
@@ -103,62 +100,33 @@
 		margin-top: responsive-value(425, 40);
 
 		input {
-			max-width: responsive-value(425, 761);
-			padding: responsive-value(425, 24) responsive-value(425, 29);
 			height: 100%;
-			max-height: responsive-value(425, 71);
-			font-size: responsive-value(425, 18);
-			line-height: responsive-value(425, 21);
+			padding: 16px 29px;
+			font-size: 0.875rem;
+			line-height: 1rem;
 		}
 
 		button {
-			max-width: responsive-value(425, 199);
-			padding: responsive-value(425, 24);
-			font-size: responsive-value(425, 18);
-			line-height: responsive-value(425, 21);
-		}
-	}
-
-	@media (max-width: 375px) {
-		max-width: responsive-value(375, 960);
-		margin-top: responsive-value(375, 40);
-
-		input {
-			max-width: responsive-value(375, 761);
-			padding: responsive-value(375, 24) responsive-value(375, 29);
-			height: 100%;
-			max-height: responsive-value(375, 71);
-			font-size: responsive-value(375, 18);
-			line-height: responsive-value(375, 21);
-		}
-
-		button {
-			max-width: responsive-value(375, 199);
-			padding: responsive-value(375, 24);
-			font-size: responsive-value(375, 18);
-			line-height: responsive-value(375, 21);
+			max-width: 90px;
+			padding: 17px 4px;
+			font-size: 0.75rem;
+			line-height: 0.875rem;
 		}
 	}
 
 	@media (max-width: 320px) {
-		max-width: responsive-value(320, 960);
-		margin-top: responsive-value(320, 40);
-
 		input {
-			max-width: responsive-value(320, 761);
-			padding: responsive-value(320, 24) responsive-value(320, 29);
 			height: 100%;
-			max-height: responsive-value(320, 71);
-			font-size: responsive-value(320, 18);
-			line-height: responsive-value(320, 21);
+			padding: 16px 29px;
+			font-size: 0.875rem;
+			line-height: 1rem;
 		}
 
 		button {
-			max-width: responsive-value(320, 199);
-			padding: responsive-value(320, 24);
-			font-size: responsive-value(320, 18);
-			line-height: responsive-value(320, 21);
+			max-width: 70px;
+			padding: 17px 4px;
+			font-size: 0.75rem;
+			line-height: 0.875rem;
 		}
 	}
-
 }
